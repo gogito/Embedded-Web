@@ -11,7 +11,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function (n, prec) {
+    toFixedFix = function(n, prec) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
@@ -27,51 +27,27 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-function getValue() {
-  var returnArray = [];
-  var returnTimeArray = [];
-  var returnTempArray = [];
-  var returnHumidArray = [];
-  var returnCOArray = [];
-  fetch("https://api.thingspeak.com/channels/1402310/feeds.json?api_key=5NX7LKD6SXBL6E58&results=12")
-    .then((response) => response.json())
-    .then((data) => {
-      for (var i = 0; i < data.feeds.length; i++) {
-        returnTempArray.push(data.feeds[i].field1);
-        returnHumidArray.push(data.feeds[i].field2);
-        returnCOArray.push(data.feeds[i].field3);
-        returnTimeArray.push(data.feeds[i].created_at);
-      }
-      returnArray.push(returnTimeArray,returnTempArray, returnHumidArray, returnCOArray);
-    });
-    return returnArray;    
-}
-
-
-let valueArray = getValue();
-
-
 // Area Chart Example
-function createChartHumidity(){
-  var ctx = document.getElementById("myAreaChart");
+function test(){
+  var ctx = document.getElementById("myCOChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
     labels: valueArray[0],
     datasets: [{
-      label: "Humidity",
+      label: "CO 2",
       lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
+      backgroundColor: "rgba(60, 179, 113, 0.05)",
+      borderColor: "rgba(60, 179, 113, 1)",
       pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointBackgroundColor: "rgba(60, 179, 113, 1)",
+      pointBorderColor: "rgba(60, 179, 113, 1)",
       pointHoverRadius: 3,
       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: valueArray[2],
+      data: valueArray[3],
     }],
   },
   options: {
@@ -100,12 +76,12 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           maxTicksLimit: 5,
+          suggestedMax: 420,
+          suggestedMin: 250,
           padding: 10,
-          suggestedMax: 70,
-          suggestedMin: 60,
           // Include a dollar sign in the ticks
-          callback: function (value, index, values) {
-            return value + '%';
+          callback: function(value, index, values) {
+            return value + ' PPM';
           }
         },
         gridLines: {
@@ -135,9 +111,9 @@ var myLineChart = new Chart(ctx, {
       mode: 'index',
       caretPadding: 10,
       callbacks: {
-        label: function (tooltipItem, chart) {
+        label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + tooltipItem.yLabel + '%';
+          return datasetLabel + ': ' +  tooltipItem.yLabel + ' PPM';
         }
       }
     }
@@ -145,4 +121,4 @@ var myLineChart = new Chart(ctx, {
 });
 }
 
-setTimeout(createChartHumidity, 2000);
+setTimeout(test, 2000);

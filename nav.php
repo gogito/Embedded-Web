@@ -21,24 +21,24 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+    <!-- Heading
     <div class="sidebar-heading">
         Manage
-    </div>
+    </div> -->
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="user.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Humidity</span></a>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="owner.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Temperature</span></a>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Tables
     <li class="nav-item">
@@ -56,7 +56,7 @@
 
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

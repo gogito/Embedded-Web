@@ -27,21 +27,6 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-function getvalueTemp() {
-  var returnArray = [];
-  fetch("https://api.thingspeak.com/channels/1402310/fields/1.json?api_key=5NX7LKD6SXBL6E58&results=12")
-    .then((response) => response.json())
-    .then((data) => {
-      for (var i = 0; i < data.feeds.length; i++) {
-        returnArray.push(data.feeds[i].field1);
-      }
-    });
-    return returnArray;
-    
-}
-
-
-let valueArrayTemp = getvalueTemp();
 
 // Area Chart Example
 function test(){
@@ -49,21 +34,22 @@ function test(){
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: valueArray[0],
     datasets: [{
       label: "Temperature",
       lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
+      backgroundColor: "rgba(255, 0, 0, 0.05)",
+      borderColor: "rgba(255, 0, 0, 1)",
       pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointBackgroundColor: "rgba(255, 0, 0, 1)",
+      pointBorderColor: "rgba(255, 0, 0, 1)",
       pointHoverRadius: 3,
       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: valueArrayTemp,
+      // data: valueArray[1],
+      data: valueArray[1],
     }],
   },
   options: {
@@ -79,7 +65,7 @@ var myLineChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'date'
+          unit: 'minute'
         },
         gridLines: {
           display: true,
@@ -91,11 +77,14 @@ var myLineChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
+          suggestedMax: 35,
+          suggestedMin: 30,
           maxTicksLimit: 5,
+          precision: 2,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return number_format(value) + 'C';
+            return value + ' C';
           }
         },
         gridLines: {
@@ -127,7 +116,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' +  number_format(tooltipItem.yLabel) + 'C';
+          return datasetLabel + ': ' +  tooltipItem.yLabel + ' C';
         }
       }
     }
