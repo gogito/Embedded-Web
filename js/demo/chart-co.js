@@ -76,8 +76,8 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           maxTicksLimit: 5,
-          suggestedMax: 420,
-          suggestedMin: 250,
+          // suggestedMax: 420,
+          // suggestedMin: 250,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {

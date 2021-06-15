@@ -77,8 +77,8 @@ var myLineChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
-          suggestedMax: 35,
-          suggestedMin: 30,
+          // suggestedMax: 35,
+          // suggestedMin: 30,
           maxTicksLimit: 5,
           precision: 2,
           padding: 10,
