@@ -29,7 +29,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 
 // Area Chart Example
-function test(){
+function test1(){
   var ctx = document.getElementById("myTemperatureChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -124,4 +124,4 @@ var myLineChart = new Chart(ctx, {
 });
 }
 
-setTimeout(test, 2000);
+// setTimeout(test1, 2000);

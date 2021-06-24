@@ -121,4 +121,4 @@ var myLineChart = new Chart(ctx, {
 });
 }
 
-setTimeout(test, 2000);
+// setTimeout(test, 2000);

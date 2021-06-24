@@ -43,6 +43,9 @@ function getValue() {
         returnTimeArray.push(data.feeds[i].created_at);
       }
       returnArray.push(returnTimeArray,returnTempArray, returnHumidArray, returnCOArray);
+      createChartHumidity();
+      test();
+      test1();
     });
     return returnArray;    
 }
@@ -145,4 +148,4 @@ var myLineChart = new Chart(ctx, {
 });
 }
 
-setTimeout(createChartHumidity, 2000);
+// setTimeout(createChartHumidity, 2000);
