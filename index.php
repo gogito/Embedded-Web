@@ -227,11 +227,11 @@
         <script src="js/demo/chart-temperature.js"></script>
         <script src="js/demo/chart-co.js"></script>
         <script src="js/demo/chart-pie-demo.js"></script>
-        <script>
+        <!-- <script>
             var userinfo = document.getElementById("userinfo_name");
             console.log(userinfo.textContent);
             userinfo.textContent = JSON.parse(document.cookie).name.FName + " " + JSON.parse(document.cookie).name.LName;
-        </script>
+        </script> -->
 
 </body>
 

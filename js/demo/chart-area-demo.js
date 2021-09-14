@@ -50,8 +50,12 @@ function getValue() {
     return returnArray;    
 }
 
+valueArray = getValue();
 
-let valueArray = getValue();
+setInterval(function () {
+  valueArray = getValue();
+}, 5000);
+
 
 
 // Area Chart Example
